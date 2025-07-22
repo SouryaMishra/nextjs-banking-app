@@ -91,12 +91,7 @@ declare type Bank = {
   sharableId: string;
 };
 
-declare type AccountTypes =
-  | "depository"
-  | "credit"
-  | "loan "
-  | "investment"
-  | "other";
+declare type AccountTypes = "depository" | "credit" | "loan " | "investment" | "other";
 
 declare type Category = "Food and Drink" | "Travel" | "Transfer";
 
@@ -148,10 +143,10 @@ declare interface BankInfoProps {
   type: "full" | "card";
 }
 
-declare interface HeaderBoxProps {
+declare interface IHeaderBoxProps {
   type?: "title" | "greeting";
   title: string;
-  subtext: string;
+  description: string;
   user?: string;
 }
 
@@ -202,7 +197,7 @@ declare interface BankTabItemProps {
   appwriteItemId?: string;
 }
 
-declare interface TotlaBalanceBoxProps {
+declare interface ITotalBalanceBoxProps {
   accounts: Account[];
   totalBanks: number;
   totalCurrentBalance: number;
@@ -246,7 +241,7 @@ declare interface CategoryProps {
   category: CategoryCount;
 }
 
-declare interface DoughnutChartProps {
+declare interface IDoughnutChartProps {
   accounts: Account[];
 }
 

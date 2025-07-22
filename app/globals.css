@@ -216,7 +216,7 @@
     @apply text-24 lg:text-30 font-semibold text-gray-900;
   }
 
-  .header-box-subtext {
+  .header-box-description {
     @apply text-14 lg:text-16 font-normal text-gray-600;
   }
 
