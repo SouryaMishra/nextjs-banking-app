@@ -15,7 +15,7 @@ const ibmPlexSerif = IBM_Plex_Serif({
 
 export const metadata: Metadata = {
   title: "PennyPinch",
-  description: "PennyPinch is a modern banking paltform for everyone",
+  description: "PennyPinch is a modern banking platform for everyone",
   icons: {
     icon: "/icons/logo.svg",
   },
