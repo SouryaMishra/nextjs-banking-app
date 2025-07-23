@@ -150,7 +150,7 @@ declare interface IHeaderBoxProps {
   user?: string;
 }
 
-declare interface MobileNavProps {
+declare interface IMobileNavProps {
   user: User;
 }
 
@@ -213,7 +213,7 @@ declare interface RightSidebarProps {
   banks: Bank[] & Account[];
 }
 
-declare interface SiderbarProps {
+declare interface ISiderbarProps {
   user: User;
 }
 
