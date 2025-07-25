@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import * as Sentry from "@sentry/nextjs";
 import { Inter, IBM_Plex_Serif } from "next/font/google";
 import "./globals.css";
 
@@ -13,13 +14,18 @@ const ibmPlexSerif = IBM_Plex_Serif({
   weight: ["400", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "PennyPinch",
-  description: "PennyPinch is a modern banking platform for everyone",
-  icons: {
-    icon: "/icons/logo.svg",
-  },
-};
+export function generateMetadata(): Metadata {
+  return {
+    title: "PennyPinch",
+    description: "PennyPinch is a modern banking platform for everyone",
+    icons: {
+      icon: "/icons/logo.svg",
+    },
+    other: {
+      ...Sentry.getTraceData(),
+    },
+  };
+}
 
 export default function RootLayout({
   children,
