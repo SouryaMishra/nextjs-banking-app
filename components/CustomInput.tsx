@@ -21,7 +21,7 @@ const CustomInput = ({ control, name, label, type = "text", placeholder }: ICust
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className="form-item">
+        <FormItem className="form-item flex-1">
           <FormLabel className="form-label">{label}</FormLabel>
           <div className="flex w-full flex-col">
             <FormControl>
