@@ -138,7 +138,7 @@ declare interface IBankCardProps {
   showBalance?: boolean;
 }
 
-declare interface BankInfoProps {
+declare interface IBankInfoProps {
   account: Account;
   appwriteItemId?: string;
   type: "full" | "card";
@@ -187,8 +187,9 @@ declare interface AuthFormProps {
   type: "sign-in" | "sign-up";
 }
 
-declare interface BankDropdownProps {
+declare interface IBankDropdownProps {
   accounts: Account[];
+  value: string;
   setValue?: UseFormSetValue<any>;
   otherStyles?: string;
 }
@@ -219,7 +220,7 @@ declare interface ISiderbarProps {
   user: User;
 }
 
-declare interface RecentTransactionsProps {
+declare interface IRecentTransactionsProps {
   accounts: Account[];
   transactions: Transaction[];
   appwriteItemId: string;
@@ -231,11 +232,11 @@ declare interface TransactionHistoryTableProps {
   page: number;
 }
 
-declare interface CategoryBadgeProps {
+declare interface ICategoryBadgeProps {
   category: string;
 }
 
-declare interface TransactionTableProps {
+declare interface ITransactionTableProps {
   transactions: Transaction[];
 }
 

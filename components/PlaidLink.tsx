@@ -44,12 +44,18 @@ const PlaidLink = ({ user, variant }: IPlaidLinkProps) => {
       ) : variant === "ghost" ? (
         <Button onClick={() => open()} variant="ghost" className="plaidlink-ghost">
           <Image src="/icons/connect-bank.svg" alt="connect bank" width={24} height={24} />
-          <p className="hiddenl text-[16px] font-semibold text-black-2 xl:block">Connect bank</p>
+          <p className="text-[16px] font-semibold text-black-2 ">Connect bank</p>
         </Button>
       ) : (
-        <Button onClick={() => open()} className="plaidlink-default">
-          <Image src="/icons/connect-bank.svg" alt="connect bank" width={24} height={24} />
-          <p className="text-[16px] font-semibold text-black-2">Connect bank</p>
+        <Button onClick={() => open()} className="group plaidlink-default sidebar-link">
+          <Image
+            className="group-hover:brightness-[3] group-hover:invert-0"
+            src="/icons/connect-bank.svg"
+            alt="connect bank"
+            width={24}
+            height={24}
+          />
+          <p className="sidebar-label hidden xl:block">Connect bank</p>
         </Button>
       )}
     </>

@@ -122,7 +122,7 @@
   }
 
   .total-balance-chart {
-    @apply flex size-full max-w-[100px] items-center sm:max-w-[120px];
+    @apply flex size-full max-w-[100px] max-h-[120px] items-center sm:max-w-[120px];
   }
 
   .total-balance-label {
@@ -266,7 +266,7 @@
   }
 
   .plaidlink-default {
-    @apply flex !justify-start cursor-pointer gap-3 rounded-lg !bg-transparent flex-row;
+    @apply flex !justify-start cursor-pointer gap-3 rounded-lg !bg-transparent flex-row hover:bg-bank-gradient;
   }
 
   /* Auth */
@@ -373,10 +373,14 @@
   }
 
   .sidebar-link {
-    @apply flex gap-3 items-center py-1 md:p-3  rounded-lg justify-center xl:justify-start;
+    @apply flex gap-3 items-center py-1 md:p-3 rounded-lg justify-center xl:justify-start hover:bg-bank-gradient text-black-2 hover:text-white;
   }
 
   .sidebar-label {
-    @apply text-16 font-semibold text-black-2 max-xl:hidden;
+    @apply text-16 font-semibold max-xl:hidden;
+  }
+
+  .test {
+    @apply text-red-500 hover:text-green-500;
   }
 }

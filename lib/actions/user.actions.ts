@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { createAdminClient, createSessionClient } from "../appwrite";
-import { ID } from "node-appwrite";
+import { ID, Query } from "node-appwrite";
 import { encryptId, extractCustomerIdFromUrl, parseStringify } from "../utils";
 import { redirect } from "next/navigation";
 import { plaidClient } from "../plaid";
@@ -15,6 +15,18 @@ const {
   APPWRITE_USER_COLLECTION_ID: USER_COLLECTION_ID,
   APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
 } = process.env;
+
+export const getUserInfo = async ({ userId }: getUserInfoProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const user = await database.listDocuments(DATABASE_ID!, USER_COLLECTION_ID!, [Query.equal("userId", [userId])]);
+
+    return parseStringify(user.documents[0]);
+  } catch (error) {
+    console.error("Error while getting user info", error);
+  }
+};
 
 export const signIn = async ({ email, password }: signInProps) => {
   try {
@@ -29,8 +41,10 @@ export const signIn = async ({ email, password }: signInProps) => {
       secure: true,
     });
 
+    const user = await getUserInfo({ userId: session.userId });
+
     // Return value of server action must be serializable
-    return parseStringify(session);
+    return parseStringify(user);
   } catch (error) {
     console.error("Error while signing in", error);
   }
@@ -83,7 +97,9 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
 export const getLoggedInUser = async () => {
   try {
     const { account } = await createSessionClient();
-    const user = await account.get();
+    const result = await account.get();
+
+    const user = await getUserInfo({ userId: result.$id });
     // Return value of server action must be serializable
     return parseStringify(user);
   } catch (error) {
@@ -113,7 +129,7 @@ export const createLinkToken = async (user: User) => {
         client_user_id: user.$id,
       },
       client_name: `${user.firstName} ${user.lastName}`,
-      products: ["auth"] as Products[],
+      products: ["auth", "transactions"] as Products[],
       language: "en",
       country_codes: ["US"] as CountryCode[],
     };
@@ -122,7 +138,7 @@ export const createLinkToken = async (user: User) => {
 
     return parseStringify({ linkToken: response.data.link_token });
   } catch (error) {
-    console.error(error);
+    console.error("Error while creating Plaid link token", error);
   }
 };
 
@@ -148,7 +164,7 @@ export const createBankAccount = async ({
 
     return parseStringify(bankAccount);
   } catch (error) {
-    console.log(error);
+    console.error("Error while creating bank account record in database", error);
   }
 };
 
@@ -208,5 +224,45 @@ export const exchangePublicToken = async ({ publicToken, user }: exchangePublicT
     });
   } catch (error) {
     console.error("Error while exchanging public token", error);
+  }
+};
+
+export const getBanks = async ({ userId }: getBanksProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const banks = await database.listDocuments(DATABASE_ID!, BANK_COLLECTION_ID!, [Query.equal("userId", [userId])]);
+
+    return parseStringify(banks.documents);
+  } catch (error) {
+    console.error("Error while getting the list of banks", error);
+  }
+};
+
+export const getBank = async ({ documentId }: getBankProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const bank = await database.listDocuments(DATABASE_ID!, BANK_COLLECTION_ID!, [Query.equal("$id", [documentId])]);
+
+    return parseStringify(bank.documents[0]);
+  } catch (error) {
+    console.error("Error while getting bank", error);
+  }
+};
+
+export const getBankByAccountId = async ({ accountId }: getBankByAccountIdProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const bank = await database.listDocuments(DATABASE_ID!, BANK_COLLECTION_ID!, [
+      Query.equal("accountId", [accountId]),
+    ]);
+
+    if (bank.total !== 1) return null;
+
+    return parseStringify(bank.documents[0]);
+  } catch (error) {
+    console.error("Error while getting bank by account id", error);
   }
 };
