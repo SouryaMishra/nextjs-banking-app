@@ -110,7 +110,7 @@
   }
 
   .home-content {
-    @apply no-scrollbar flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll;
+    @apply flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12;
   }
 
   .home-header {
@@ -155,7 +155,7 @@
 
   /* Right sidebar */
   .right-sidebar {
-    @apply no-scrollbar hidden min-h-screen max-h-screen flex-col border-l border-gray-200 xl:flex w-[355px] xl:overflow-y-scroll !important;
+    @apply hidden flex-col border-l border-gray-200 xl:flex w-[355px]  !important;
   }
 
   .profile-banner {
@@ -378,9 +378,5 @@
 
   .sidebar-label {
     @apply text-16 font-semibold max-xl:hidden;
-  }
-
-  .test {
-    @apply text-red-500 hover:text-green-500;
   }
 }

@@ -12,7 +12,7 @@ const Sidebar = ({ user }: ISiderbarProps) => {
   const pathname = usePathname();
 
   return (
-    <section className="sidebar">
+    <section className="sidebar h-full">
       <nav className="flex flex-col gap-4">
         <Link href="/" className="flex mb-12 cursor-pointer flex-center gap-2">
           <Image className="size-[24px]" src="/icons/logo.svg" width={34} height={34} alt="PennyPinch logo" />
