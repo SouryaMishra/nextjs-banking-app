@@ -240,7 +240,7 @@ declare interface ITransactionTableProps {
   transactions: Transaction[];
 }
 
-declare interface CategoryProps {
+declare interface ICategoryProps {
   category: CategoryCount;
 }
 
