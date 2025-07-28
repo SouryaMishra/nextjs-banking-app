@@ -34,3 +34,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Links
+
+- [Figma Link](https://www.figma.com/design/jvcjzjCKw9YlhCNOIY1GPY/Horizon-Banking-App?node-id=8-1975&t=q1KzvQirqqvrezml-0)
+- [Figjam Link for App flow](https://www.figma.com/board/KtF7XeCMJfKpSmnS1YZqOv/Horizon-Banking-App-Flow?node-id=0-1&p=f&t=edNIkqEbmsH5XRys-0)
